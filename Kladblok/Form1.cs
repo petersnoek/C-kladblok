@@ -12,10 +12,12 @@ namespace Kladblok
 {
     public partial class Form1 : Form
     {
+        string FilenameWithPath = "";
+        
         public Form1()
         {
             InitializeComponent();
-            SetTitle(null);
+            SetTitle();
             //Hide();
             //LoginForm f = new LoginForm();
             //DialogResult r = f.ShowDialog();
@@ -45,16 +47,22 @@ namespace Kladblok
             textBox1.Clear();
 
             // stel titel in op default
-            SetTitle(null);
+            FilenameWithPath = "";
+            SetTitle();
+            
         }
 
-        private void SetTitle(string newTitle)
+        private void SetTitle()
         {
-            if (newTitle == null)
+            if (FilenameWithPath == null | FilenameWithPath == "")
             {
-                newTitle = "Nieuw document";
+                this.Text = "Nieuw document - C# Kladblok";
             }
-            this.Text = newTitle + " - C# Kladblok";
+            else
+            {
+                string OnlyFilename = System.IO.Path.GetFileNameWithoutExtension(FilenameWithPath);
+                this.Text = OnlyFilename + " - C# Kladblok";
+            }
         }
 
         private void openenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,10 +73,9 @@ namespace Kladblok
             {
                 try
                 {
-                    textBox1.Text = System.IO.File.ReadAllText(openFileDialog1.FileName);
-                    string OnlyName = System.IO.Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
-                    SetTitle(OnlyName);
-
+                    this.FilenameWithPath = openFileDialog1.FileName;
+                    textBox1.Text = System.IO.File.ReadAllText(FilenameWithPath);
+                    SetTitle();
                 }
                 catch (Exception err)
                 {
@@ -76,6 +83,28 @@ namespace Kladblok
                 }
                 
             }
+        }
+
+        private void opslaanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // is er al een bestaande filename? dan bevat this.Filename een tekst
+            if ( this.FilenameWithPath == "" )
+            {
+                // vraag om een filename
+                DialogResult r = saveFileDialog1.ShowDialog();
+                if ( r == DialogResult.OK)
+                {
+                    this.FilenameWithPath = saveFileDialog1.FileName;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            System.IO.File.WriteAllText(this.FilenameWithPath, textBox1.Text);
+            SetTitle();
+
         }
     }
 }
