@@ -46,8 +46,10 @@ namespace Kladblok
             // maak de textbox leeg
             textBox1.Clear();
 
-            // stel titel in op default
-            FilenameWithPath = "";
+            // stel titel in op "leeg" (we beginnen namelijk aan een nieuw document)
+            this.FilenameWithPath = "";
+
+            // en ververs de titelbalk
             SetTitle();
             
         }
@@ -67,19 +69,30 @@ namespace Kladblok
 
         private void openenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // toon het OpenFileDialog venster en wacht tot gebruiken reageert
             DialogResult r = openFileDialog1.ShowDialog();
 
+            // heeft de gebruiker een file geselecteerd? dan is het resultaat OK
             if ( r==DialogResult.OK)
             {
                 try
                 {
+                    // vraag het OpenFileDialog venster om het pad en filename 
                     this.FilenameWithPath = openFileDialog1.FileName;
-                    textBox1.Text = System.IO.File.ReadAllText(FilenameWithPath);
+
+                    // ververs de titelbalk want het geopende bestand is hierboven gewijzigd
                     SetTitle();
+
+                    // lees alle regels in en stop dat in het tekstvak
+                    textBox1.Text = System.IO.File.ReadAllText(FilenameWithPath);
+                    
                 }
+                // ging er iets fout? dan komt er een exception. Die handel ik hieronder af
+                // door een foutmelding te tonen.
                 catch (Exception err)
                 {
-                    MessageBox.Show("Er is iets fout gegaan tijdens het laden van het bestand.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Er is iets fout gegaan tijdens het laden van het bestand.", 
+                        "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
             }
@@ -98,10 +111,12 @@ namespace Kladblok
                 }
                 else
                 {
+                    // gebruiker heeft de "opslaan" dialoog geannuleerd. Stop.
                     return;
                 }
             }
 
+            // sla alle regels uit textbox1 op in het gekozen bestand.
             System.IO.File.WriteAllText(this.FilenameWithPath, textBox1.Text);
             SetTitle();
 

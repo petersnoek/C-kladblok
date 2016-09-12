@@ -66,33 +66,33 @@
             // nieuwToolStripMenuItem
             // 
             this.nieuwToolStripMenuItem.Name = "nieuwToolStripMenuItem";
-            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nieuwToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.nieuwToolStripMenuItem.Text = "Nieuw";
             this.nieuwToolStripMenuItem.Click += new System.EventHandler(this.nieuwToolStripMenuItem_Click);
             // 
             // openenToolStripMenuItem
             // 
             this.openenToolStripMenuItem.Name = "openenToolStripMenuItem";
-            this.openenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openenToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.openenToolStripMenuItem.Text = "Openen..";
             this.openenToolStripMenuItem.Click += new System.EventHandler(this.openenToolStripMenuItem_Click);
             // 
             // opslaanToolStripMenuItem
             // 
             this.opslaanToolStripMenuItem.Name = "opslaanToolStripMenuItem";
-            this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.opslaanToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.opslaanToolStripMenuItem.Text = "Opslaan";
             this.opslaanToolStripMenuItem.Click += new System.EventHandler(this.opslaanToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(119, 6);
             // 
             // afsluitenToolStripMenuItem
             // 
             this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
-            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.afsluitenToolStripMenuItem.Text = "Afsluiten";
             this.afsluitenToolStripMenuItem.Click += new System.EventHandler(this.afsluitenToolStripMenuItem_Click);
             // 
